@@ -12,6 +12,8 @@ To begin, please follow the steps below:
 1. Read the [Git Primer](docs/git-primer.md).
 2. Read the [Vagrant Primer](docs/vagrant.md).
 3. Review the [HLD](docs/software-hdl.mermaid).
+4. [Setup your development environment](setup/README.md).
+5. Start Contributing!
 
 ## Contributing 
 
