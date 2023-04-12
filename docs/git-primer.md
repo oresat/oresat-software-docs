@@ -31,7 +31,48 @@ with popular IDEs and text editors, making it easy to incorporate into your deve
 various projects and organizations. Being familiar with Git can be a valuable skill when collaborating with others
 or looking for job opportunities.
 
-Overall, Git provides a powerful and flexible system for managing your code, collaborating with others, and integrating with various tools and platforms. Its widespread adoption and active development make it a valuable tool for any software developer.
+Overall, Git provides a powerful and flexible system for managing your code, collaborating with others, and integrating 
+with various tools and platforms. Its widespread adoption and active development make it a valuable tool for any software developer.
+
+## Terminology
+1. **Repository (repo)**: A collection of files and folders, including the entire version history, that is managed by Git.
+
+2. **Commit**: A snapshot of changes in the repository. Each commit has a unique identifier (hash) and includes metadata
+such as the author, timestamp, and a commit message describing the changes.
+
+3. **Branch**: A parallel version of the repository that diverges from the main working project.
+Branches are used to isolate changes for a feature or bug fix without affecting the main branch.
+
+4. **Main (master) branch**: The default branch in a repository, which contains the latest stable version of the project. 
+It is often named master or main.
+
+5. **Clone**: Creating a local copy of a remote repository on your machine, including the entire commit history.
+
+6. **Fork**: Creating a personal copy of another user's repository on your GitHub account. This allows you to make 
+changes and create pull requests without affecting the original repository.
+
+7. **Remote**: A reference to a remote repository, such as one hosted on GitHub. The default remote is usually called origin.
+
+8. **Fetch**: Retrieving updates from a remote repository, such as new commits or branches, without merging them 
+into your local repository.
+
+9. **Pull**: Fetching updates from a remote repository and merging them into your local repository.
+
+10. **Push**: Sending your local commits to a remote repository.
+
+11. **Merge**: Combining changes from one branch into another. This can be done locally or via a pull request on platforms like GitHub.
+
+12. **Pull request (PR)**: A request to merge changes from one branch into another on a remote repository, such as on GitHub. 
+PRs allow for code review and collaboration before merging.
+
+13. **Conflict**: A situation that occurs when changes in different branches conflict with each other. 
+Conflicts need to be resolved manually before a merge can be completed.
+
+14. **Staging area**: An intermediate area where changes are added before they are committed to the repository. 
+The staging area allows you to selectively stage and commit changes.
+
+15. **.gitignore**: A file that lists file patterns and directories to be ignored by Git when committing changes. 
+This is useful for ignoring files that should not be tracked, such as temporary files, build artifacts, or sensitive data.
 
 ## Common Commands
 
