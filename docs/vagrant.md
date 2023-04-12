@@ -9,26 +9,88 @@ Vagrant boxes are pre-packaged VM templates that can be easily shared and custom
 we can create consistent, reproducible development environments for our projects, making it easier for developers to
 collaborate and contribute effectively.
 
-### Getting Started with Vagrant Boxes
+### Basic Vagrant Commands
+Here is a list of basic Vagrant commands to help you get started with managing your Vagrant environments:
 
-To begin working with Vagrant boxes in our tech stack, please follow the steps below:
+1. **vagrant init**: Initializes a new Vagrant environment by creating a Vagrantfile in the current directory. 
+You can optionally specify a box name and URL to preconfigure the Vagrantfile.
 
-1. **Install Vagrant**: Visit the Vagrant website (https://www.vagrantup.com/downloads) and download the appropriate version
-   for your operating system. Follow the installation instructions provided on the website.
+```
+vagrant init [box_name] [box_url]
+```
 
-2. **Install VirtualBox**: Vagrant requires a virtualization provider like VirtualBox to manage VMs. Download and
-   install the latest version of VirtualBox (https://www.virtualbox.org/wiki/Downloads) for your operating system.
+2. **vagrant up**: Starts and provisions the Vagrant environment according to the Vagrantfile in the current directory.
 
-3. **Initialize and start the Vagrant box**: Run the command `vagrant up` to initialize and start the VM.
-   Vagrant will download the specified box, set up the VM, and provision it according to the configuration
-   defined in the Vagrantfile.
+```
+vagrant up
+```
 
-4. **Connect to the VM**: Once the VM is up and running, use the command `vagrant ssh` to connect to it.
-   You are now inside the VM and can start working on the project within the isolated development environment.
+3. **vagrant halt**: Shuts down the running Vagrant environment.
 
-5. **Stop and manage the VM**: Use `vagrant halt` to stop the VM when you are done working.
-   Other useful commands include `vagrant help`, `vagrant suspend`, `vagrant resume`, and `vagrant destroy`.
-   Refer to the official Vagrant documentation (https://www.vagrantup.com/docs) for more information on managing your VM.
+```
+vagrant halt
+```
+
+4. **vagrant reload**: Restarts the Vagrant environment, applying any changes made to the Vagrantfile since the last vagrant up.
+
+```
+vagrant reload
+```
+
+5. **vagrant suspend**: Suspends the running Vagrant environment, saving its current state.
+```
+vagrant suspend
+```
+
+6. **vagrant resume**: Resumes a previously suspended Vagrant environment.
+```
+vagrant resume
+```
+
+7. **vagrant destroy**: Stops and deletes the Vagrant environment, including all associated virtual machines and resources.
+
+```
+vagrant destroy
+```
+
+8. **vagrant status**: Shows the current status of the Vagrant environment.
+```
+vagrant status
+```
+
+9. **vagrant ssh**: Connects to the Vagrant environment using SSH.
+```
+vagrant ssh
+```
+
+10. **vagrant provision**: Runs the provisioners defined in the Vagrantfile on the running Vagrant environment.
+
+```
+vagrant provision
+```
+
+11. **vagrant box list**: Lists all the boxes installed on your local machine.
+
+```
+vagrant box list
+```
+
+12. **vagrant box add**: Adds a new box to your local machine, either from a URL or a local file.
+
+```
+vagrant box add [box_name] [box_url_or_path]
+```
+
+13. **vagrant box update**: Updates an installed box to the latest version.
+
+```
+vagrant box update --box [box_name]
+```
+
+13. **vagrant box remove**: Removes a box from your local machine.
+```
+vagrant box remove [box_name]
+```
 
 ### Vagrant Best Practices
 
