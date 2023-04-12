@@ -24,6 +24,9 @@ else
   exit 1
 fi
 
+mkdir -p repos
+cd repos || { echo "repos create failed"; exit 1; }
+
 # Iterate through the list and clone each repository
 for repo in "${REPOS[@]}"; do
     git clone "$repo"
