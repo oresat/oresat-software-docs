@@ -1,8 +1,26 @@
 # Setup the Development Environment
 
-## Getting Started
-Run the `clone_repos.sh` script. Execute the script by providing either "ssh" or "https" as an argument. 
-This will determine which protocol to use when cloning the repositories:
+## Getting started
+1. Clone the `oresat-onboarding` repository into your workspace.
+2. Copy the `setup/` folder into your workspace.
+3. Run the `clone_repos.sh` script with either `ssh` or `https`
+4. Run `vagrant up`
+
+## Setup Contents
+### `clone_repos.sh`
+This script is designed to clone a set of repositories for OreSat interns using either the SSH or HTTPS protocol. 
+It simplifies the process of setting up the required repositories on your local machine, ensuring that you have the 
+necessary codebase to start working on the project.
+
+**Script Overview:**
+
+The script takes a single command-line argument that specifies the protocol to use for cloning the repositories. 
+The accepted values are "ssh" or "https".
+
+It defines two arrays, REPOS_HTTPS and REPOS_SSH, containing the HTTPS and SSH URLs of the repositories, respectively.
+Based on the provided protocol argument, it selects the appropriate array of repository URLs.
+The script creates a new directory called "repos" if it doesn't already exist and changes the working directory to "repos".
+It iterates through the selected array of repository URLs and clones each repository into the "repos" directory.
 
 For SSH:
 ```
@@ -11,6 +29,28 @@ For SSH:
 For HTTPS:
 ```
 ./clone_repos.sh https
+```
+
+### Vagrantfile
+
+1. **Vagrant configuration version**: The line `Vagrant.configure("2")` sets the configuration version.
+   You should not change this value unless you know what you're doing, as it ensures compatibility with Vagrant.
+2. **Box configuration**: The line `config.vm.box = "ubuntu/focal64"` sets the base box for the virtual machine.
+   In this case, it is using Ubuntu 20.04 (Focal Fossa) 64-bit. You can find more boxes at https://vagrantcloud.com/search.
+3. **Synced folders**: The following lines configure shared folders between the host and guest machines
+```
+config.vm.synced_folder "repos/", "/vagrant"
+```
+These lines map the "repos" folders on the host machine to the "/vagrant" folder on the guest machine.
+4. Provisioning: The Vagrantfile includes a shell provisioner that runs a series of commands on the guest machine
+   after it starts. In this case, the script updates the package lists, installs Python 3 Pip, and installs the extra
+   Linux modules for the current kernel version
+```
+config.vm.provision "shell", inline: <<-SHELL
+  sudo apt update
+  sudo apt install python3-pip
+  sudo apt-get install -y linux-modules-extra-$(uname -r)
+SHELL
 ```
 
 ##  Vagrant Boxes
@@ -33,28 +73,3 @@ To begin working with Vagrant boxes in our tech stack, please follow the steps b
 5. **Stop and manage the VM**: Use `vagrant halt` to stop the VM when you are done working.
    Other useful commands include `vagrant help`, `vagrant suspend`, `vagrant resume`, and `vagrant destroy`.
    Refer to the official Vagrant documentation (https://www.vagrantup.com/docs) for more information on managing your VM.
-
-
-## A Closer look at the Dev environment Vagrantfile
-
-1. **Vagrant configuration version**: The line `Vagrant.configure("2")` sets the configuration version. 
-You should not change this value unless you know what you're doing, as it ensures compatibility with Vagrant.
-2. **Box configuration**: The line `config.vm.box = "ubuntu/focal64"` sets the base box for the virtual machine. 
-In this case, it is using Ubuntu 20.04 (Focal Fossa) 64-bit. You can find more boxes at https://vagrantcloud.com/search.
-3. **Synced folders**: The following lines configure shared folders between the host and guest machines
-```
-config.vm.synced_folder "oresat-olaf/", "/vagrant"
-config.vm.synced_folder "oresat-c3/", "/vagrant"
-config.vm.synced_folder "yamcs/", "/vagrant"
-```
-These lines map the "oresat-olaf", "oresat-c3", and "yamcs" folders on the host machine to the "/vagrant" folder on the guest machine.
-4. Provisioning: The Vagrantfile includes a shell provisioner that runs a series of commands on the guest machine
-after it starts. In this case, the script updates the package lists, installs Python 3 Pip, and installs the extra
-Linux modules for the current kernel version
-```
-config.vm.provision "shell", inline: <<-SHELL
-  sudo apt update
-  sudo apt install python3-pip
-  sudo apt-get install -y linux-modules-extra-$(uname -r)
-SHELL
-```
