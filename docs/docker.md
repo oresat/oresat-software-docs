@@ -28,9 +28,10 @@ developers to store, manage, and share container images.
 Here are some basic Docker commands that are essential when working with Docker:
 
 1. **Build an image**: Build a Docker image from a Dockerfile in the current directory.
-``
+
+```
 docker build -t image-name:tag .
-``
+```
 
 2. **List images**: Display a list of Docker images available on your local system.
 ```
