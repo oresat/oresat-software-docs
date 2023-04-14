@@ -7,11 +7,9 @@ in this guide, you'll be set up and ready to contribute to OreSat's success in n
 
 ## Getting Started
 
-To begin, please follow the steps below:
-
 1. Read the [Git Primer](docs/git-primer.md).
 2. Read the [Vagrant Primer](docs/vagrant.md).
-3. Read the Docker Primer().
+3. Read the [Docker Primer](docs/docker.md).
 3. Review the [HLD](docs/software-hdl.mermaid).
 4. [Setup your development environment](setup/README.md).
 5. Start Contributing!

@@ -1,10 +1,12 @@
 # Setup the Development Environment
 
 ## Getting started
-1. Clone the `oresat-onboarding` repository into your workspace.
-2. Copy the `setup/` folder into your workspace.
-3. Run the `clone_repos.sh` script with either `ssh` or `https`
-4. Run `vagrant up`
+1. Clone the `oresat-onboarding` repository into your workspace. A workspace is a structured environment that help
+you organize and manage their work. Generally, each project should have it's own workspace. 
+2. Copy the `setup/` folder into your workspace. Because we are cloning additional repositories into our workspace,
+we don't want our workspace to be within a git repository. 
+3. Run the `clone_repos.sh` script with either `ssh` or `https`. 
+4. Run `vagrant up`. 
 
 ## Setup Contents
 ### `clone_repos.sh`
@@ -42,7 +44,8 @@ For HTTPS:
 config.vm.synced_folder "repos/", "/vagrant"
 ```
 These lines map the "repos" folders on the host machine to the "/vagrant" folder on the guest machine.
-4. Provisioning: The Vagrantfile includes a shell provisioner that runs a series of commands on the guest machine
+
+4. **Provisioning**: The Vagrantfile includes a shell provisioner that runs a series of commands on the guest machine
    after it starts. In this case, the script updates the package lists, installs Python 3 Pip, and installs the extra
    Linux modules for the current kernel version
 ```
