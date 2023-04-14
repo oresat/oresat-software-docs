@@ -4,13 +4,13 @@ PROTOCOL=$1
 
 REPOS_HTTPS=(
     "https://github.com/oresat/oresat-olaf.git"
-    "https://github.com/oresat/oresat-c3.git"
+    "https://github.com/oresat/oresat-c3-software.git"
     "https://github.com/uniclogs/yamcs.git"
 )
 
 REPOS_SSH=(
   "git@github.com:oresat/oresat-olaf.git"
-  "git@github.com:oresat/oresat-c3.git"
+  "git@github.com:oresat/oresat-c3-software.git"
   "git@github.com:uniclogs/yamcs.git"
 )
 
