@@ -1,17 +1,17 @@
 flowchart BT
 subgraph OreSat
-subgraph controller[Controller]
+subgraph controller[C3]
 c_id[OLAF Interface]
 end
 bus(CAN Bus)
-chip1(Chip 1)
-chip2(Chip 2)
+card1(Card 1)
+card2(Card 2)
 
 c_id---bus
-bus---chip1
-bus---chip2
-chip1---bus
-chip2---bus
+bus---card1
+bus---card2
+card1---bus
+card2---bus
 bus---c_id
 end
 
@@ -23,4 +23,4 @@ end
 
 server1-->|EDL|c_id
 c_id-->|EDL| server1
-OreSat-->|Status Updates| GroundStation
+OreSat-->|Beacon| GroundStation
