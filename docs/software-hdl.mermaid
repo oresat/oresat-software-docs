@@ -1,26 +1,66 @@
-flowchart BT
-subgraph OreSat
-subgraph controller[C3]
-c_id[OLAF Interface]
-end
-bus(CAN Bus)
-card1(Card 1)
-card2(Card 2)
+---
+title: Software High Level Overview
+---
 
-c_id---bus
-bus---card1
-bus---card2
-card1---bus
-card2---bus
-bus---c_id
-end
+flowchart TB
+    subgraph GroundStation [UniCLOGs]
+        server2[GNU-Radio]
+        server1[YAMCS Server]
 
-subgraph GroundStation
-subgraph container1 [YAMCS Container]
-server1[YAMCS Server]
-end
-end
+        server1-->|EDL| server2
+        server2-->|EDL| server1
+        server2-..->|Beacon| server1
+    end
 
-server1-->|EDL|c_id
-c_id-->|EDL| server1
-OreSat-->|Beacon| GroundStation
+    subgraph controller[C3]
+        app1[Oresat C3]
+        app2[AX5043-App]
+
+        chip1([AX5042])
+        chip2([AX5043])
+
+        app1-->|EDL|app2
+        app2-->|EDL|app1
+        app1-..->|Beacon|app2
+
+        app2-->chip1
+        app2-->chip2
+    end
+
+    server2-->|EDL Up|chip1
+    server2-->|EDL Up|chip2-..->|EDL Down, Beacon Down|server2
+
+    subgraph oresat[CubeSat]
+        subgraph card1[GPS]
+            direction LR
+            app3[Oresat GPS]
+            chip3([MAX7...])
+        end
+
+        app3 --- chip3
+
+        subgraph card2[Stars Tracker]
+            direction LR
+            app4[Oresat-star-tracker]
+            app5[PRU can]
+            chip4[AR013x Camera]
+        end
+
+        app4-->app5---chip4
+
+        subgraph card3[dxwifi]
+            app5[Oresat dxwifi]
+            chip5[USB Camera]
+            chip6[TX Chip]
+        end
+
+        subgraph card4[CFC]
+            direction LR
+            app6[Oresat-CFC]
+            app7[PRU can]
+            chip7[PIRT 1280 Camera]
+        end
+
+        app6-->app7---chip7
+
+    end

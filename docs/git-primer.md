@@ -74,6 +74,11 @@ The staging area allows you to selectively stage and commit changes.
 15. **.gitignore**: A file that lists file patterns and directories to be ignored by Git when committing changes. 
 This is useful for ignoring files that should not be tracked, such as temporary files, build artifacts, or sensitive data.
 
+## How to push your first commit
+
+1. 
+
+
 ## Common Commands
 
 1. **git init**: Initialize a new Git repository in the current directory.
