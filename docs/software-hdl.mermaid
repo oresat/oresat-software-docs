@@ -2,8 +2,9 @@
 title: Software High Level Overview
 ---
 
-flowchart TB
+flowchart RL
     subgraph GroundStation [UniCLOGs]
+        direction BT
         server2[GNU-Radio]
         server1[YAMCS Server]
 
@@ -13,6 +14,7 @@ flowchart TB
     end
 
     subgraph controller[C3]
+        direction TB
         app1[Oresat C3]
         app2[AX5043-App]
 
@@ -29,6 +31,8 @@ flowchart TB
 
     server2-->|EDL Up|chip1
     server2-->|EDL Up|chip2-..->|EDL Down, Beacon Down|server2
+
+    bus([CAN Bus])
 
     subgraph oresat[CubeSat]
         subgraph card1[GPS]
@@ -49,18 +53,36 @@ flowchart TB
         app4-->app5---chip4
 
         subgraph card3[dxwifi]
-            app5[Oresat dxwifi]
+            app6[Oresat dxwifi]
             chip5[USB Camera]
             chip6[TX Chip]
+
+            app6-->chip5
+            app6-->chip6
         end
 
         subgraph card4[CFC]
             direction LR
-            app6[Oresat-CFC]
-            app7[PRU can]
+            app7[Oresat-CFC]
+            app8[PRU can]
             chip7[PIRT 1280 Camera]
         end
 
-        app6-->app7---chip7
+        app7-->app8---chip7
+
+        chip8[Solar x8]
+        chip9[Imu]
+        chip10[Battery x2]
+
 
     end
+
+    app1<-->bus
+    bus<-->app3
+    bus<-->app4
+    bus<-->app5
+    bus<-->app6
+    bus<-->app7
+    bus<-->chip8
+    bus<-->chip9
+    bus<-->chip10
