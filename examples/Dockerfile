@@ -2,7 +2,7 @@
 FROM python:3.9-slim
 
 # Copy the current directory contents into the container at /app
-COPY app /app
+COPY examples/app /app
 
 # Set the working directory to /app
 WORKDIR /app
@@ -15,7 +15,6 @@ EXPOSE 8080
 
 # Define environment variable
 ENV FLASK_APP app.py
-
 
 # Run app.py when the container launches
 CMD ["flask", "run", "--host=0.0.0.0", "--port=8080"]
