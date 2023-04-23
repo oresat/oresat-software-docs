@@ -76,8 +76,32 @@ This is useful for ignoring files that should not be tracked, such as temporary 
 
 ## How to push your first commit
 
-1. 
+1. Add the files that you changed. You can see all files that have changed by running:
+```bash
+git status
+```
 
+Use `git add` to stage files
+```bash
+git add <file_name>               # Stage a single file
+git add <file_name1> <file_name2> # Stage multiple files
+git add .                         # Stage all changes
+```
+
+2. Commit your changes.
+```bash
+git commit -m "Your commit message"
+```
+
+3. Check the difference between your local and main to ensure you are pushing the correct changes.
+```bash
+git diff
+```
+
+4. Push!
+```bash
+git push 
+```
 
 ## Common Commands
 
