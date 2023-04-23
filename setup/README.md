@@ -56,15 +56,15 @@ config.vm.provision "shell", inline: <<-SHELL
 SHELL
 ```
 
-##  Vagrant Boxes
+## Vagrant Boxes
 
 To begin working with Vagrant boxes in our tech stack, please follow the steps below:
 
-1. **Install Vagrant**: Visit the Vagrant website (https://www.vagrantup.com/downloads) and download the appropriate version
+1. **Install Vagrant**: Visit the [Vagrant website](https://www.vagrantup.com/downloads) and download the appropriate version
    for your operating system. Follow the installation instructions provided on the website.
 
 2. **Install VirtualBox**: Vagrant requires a virtualization provider like VirtualBox to manage VMs. Download and
-   install the latest version of VirtualBox (https://www.virtualbox.org/wiki/Downloads) for your operating system.
+   install the latest version of [VirtualBox](https://www.virtualbox.org/wiki/Downloads) for your operating system.
 
 3. **Initialize and start the Vagrant box**: Run the command `vagrant up` to initialize and start the VM.
    Vagrant will download the specified box, set up the VM, and provision it according to the configuration
@@ -75,4 +75,36 @@ To begin working with Vagrant boxes in our tech stack, please follow the steps b
 
 5. **Stop and manage the VM**: Use `vagrant halt` to stop the VM when you are done working.
    Other useful commands include `vagrant help`, `vagrant suspend`, `vagrant resume`, and `vagrant destroy`.
-   Refer to the official Vagrant documentation (https://www.vagrantup.com/docs) for more information on managing your VM.
+   Refer to the [official Vagrant documentation](https://www.vagrantup.com/docs) for more information on managing your VM.
+
+## Using Github Docker Registry
+
+To authenticate with GitHub Container Registry (ghcr.io), you need to create a personal access token on GitHub and use
+it to log in to the registry.
+
+Please follow these steps:
+
+1. Visit GitHub's [Personal access tokens](https://github.com/settings/tokens) page.
+
+2. Click "Generate new token" in the top right corner.
+
+3. Enter a descriptive name for the token in the "Note" field, e.g., "Docker Login".
+
+4. In the "Select scopes" section, check the box next to "read:packages" (and "write:packages" if you plan 
+to push images to the registry).
+
+6. Click "Generate token" at the bottom of the page.
+
+Now that you have a personal access token, you can use it to authenticate with the GitHub Container Registry:
+
+Open your terminal or command prompt.
+
+Run the following command, replacing <your-github-username> with your GitHub username and <your-personal-access-token> 
+with the token you just created:
+
+```bash
+docker login ghcr.io -u <your-github-username> -p <your-personal-access-token>
+```
+
+You should see the message "Login Succeeded" if the authentication was successful. Now you should be able to pull, 
+push, and interact with images hosted on ghcr.io that you have access to.
