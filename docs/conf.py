@@ -1,19 +1,14 @@
-# Configuration file for the Sphinx documentation builder.
-#
+'''Configuration file for the Sphinx documentation builder.'''
+
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-import os
-import sys
 from datetime import datetime
-
-sys.path.insert(0, os.path.abspath('..'))
-
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'OreSat Software Intern Onboarding Guide'
+project = 'OreSat Software'
 copyright = f'{datetime.now().year}, Portland State Aerospace Society'
 author = 'PSAS'
 release = '1.0'
@@ -40,8 +35,7 @@ exclude_patterns = ['build', 'Thumbs.db', '.DS_Store']
 
 html_theme = 'sphinx_rtd_theme'
 html_domain_indices = True
-#html_static_path = ['static']
-#html_css_files = ['custom.css']
+# html_static_path = ['static']
 
 
 # -- Others Options ----------------------------------------------------------
@@ -49,6 +43,7 @@ html_domain_indices = True
 # Example configuration for intersphinx: refer to the Python standard library.
 # To add links to stand python type definitions.
 intersphinx_mapping = {'python': ('https://docs.python.org/3/', None)}
+
 
 def setup(app):
     app.add_js_file('zoom.js')

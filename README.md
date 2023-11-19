@@ -1,8 +1,3 @@
-# OreSat - Software Intern Onboarding Guide
+# OreSat Software Docs
 
-https://oresat-software-onboarding.readthedocs.io/en/latest/
-
-
-
-
-
+Documentation, resources, guides, and best practices for OreSat software developement.
