@@ -11,11 +11,9 @@ Read through the below documents:
 .. toctree::
    :maxdepth: 2
 
-   pages/git-primer
-   pages/docker
-   pages/github-actions
-   pages/vagrant
-   pages/hdl
+   glossary
+   primers/index
+   hdl
 
 Setting up your environment
 ===========================
