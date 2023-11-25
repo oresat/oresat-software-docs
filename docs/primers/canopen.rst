@@ -45,17 +45,18 @@ Variable
    :header: "Name", "C Data Type", "Description"
 
    "BOOLEAN", "bool", "A true / false value"
-   "INTEGER8", "int8_t", "8 bit signed integer"
-   "INTEGER16", "int16_t", "16 bit signed integer"
-   "INTEGER32", "int32_t", "32 bit signed integer"
-   "INTEGER64", "int64_t", "64 bit signed integer"
-   "UNSIGNED8", "uint8_t", "8 bit unsigned integer"
-   "UNSIGNED16", "uint16_t", "16 bit unsigned integer"
-   "UNSIGNED32", "uint32_t", "32 bit unsigned integer"
-   "UNSIGNE64", "uint64_t", "64 bit unsigned integer"
-   "REAL32", "float", "32 bit floating point number"
-   "REAL64", "double", "64 bit (double-precision) floating point number"
+   "INTEGER8", "int8_t", "8-bit signed integer"
+   "INTEGER16", "int16_t", "16-bit signed integer"
+   "INTEGER32", "int32_t", "32-bit signed integer"
+   "INTEGER64", "int64_t", "64-bit signed integer"
+   "UNSIGNED8", "uint8_t", "8-bit unsigned integer"
+   "UNSIGNED16", "uint16_t", "16-bit unsigned integer"
+   "UNSIGNED32", "uint32_t", "32-bit unsigned integer"
+   "UNSIGNED64", "uint64_t", "64-bit unsigned integer"
+   "REAL32", "float", "32-bit floating point number"
+   "REAL64", "double", "64-bit (double-precision) floating point number"
    "VISABLE_STRING", "char []", "An ASCII string"
+   "OCTET_STRING", "uint8_t []", "An octet string"
    "DOMAN", "void \*", "A placeholder value that must be have callback function(s)"
 
 Array
@@ -64,12 +65,14 @@ Array
 - Can only be at an index.
 - All subindexes other than subindex ``0x00``, must be the same data type.
 - Subindex ``0x00`` is a Variable with value of the highest subindex.
+- Variables in a Array do not have have sequential subindex; e.g.: a 
+  Array can have object at subindexes ``0x00``, ``0x01``, ``0x04`` (no objects 
+  at ``0x02`` or ``0x03`` in this example).
 
 Record
 ******
 
 - Can only be at an index.
-- All subindexes other than subindex ``0x00``, must be the same data type.
 - Subindex ``0x00`` is a Variable with value of the highest subindex.
 - Variables in a Record do not have have sequential subindex; e.g.: a 
   Record can have object at subindexes ``0x00``, ``0x01``, ``0x04`` (no objects 
@@ -130,10 +133,10 @@ much smaller and easier to quickly understand than an EDS/DCF file.
 Messages
 --------
 
-``COB-ID`` term is used as the name of the 11 bit identifier field of a CAN
+``COB-ID`` term is used as the name of the 11-bit identifier field of a CAN
 message for a CANopen message.
 
-``COB-ID`` is made up of 4 bits for the CANopen message id and 7 bits for the
+``COB-ID`` is made up of 4-bits for the CANopen message id and 7-bits for the
 ``NODE-ID``.
 
 CANopen nodes use the ``COB-ID`` to id all messages.
@@ -141,11 +144,19 @@ CANopen nodes use the ``COB-ID`` to id all messages.
 Heartbeat
 *********
 
-All node send out a 1 byte heartbeat message with a ``COB-ID`` of
+All node send out a 1-byte heartbeat message with a ``COB-ID`` of
 ``0x700 + NODE-ID``.
 
-The master node can use the heartbeat byte message to confirm what boards are
+The master node can use the heartbeat message to confirm what boards are
 on and in a good state.
+
+.. csv-table::
+   :header: "Value", "Description"
+
+   "0x00", "Boot up"
+   "0x04", "Stopped"
+   "0x05", "Operational"
+   "0x7F", "Pre-operational"
 
 Example heartbeat messages from node ``0x10``
 
@@ -176,22 +187,22 @@ master node is reading from or writing to. SDO response messages use a
 ``COB-ID`` of ``0x600 + NODE-ID`` of the node the master node is reading from
 or writing to.
 
-There are 3 types of SDO; expedite, sequence, and block. CANopen libraries can determine the best
+There are 3 types of SDO; expedited, segmented, and block. CANopen libraries can determine the best
 SDO type based off of the value's data type.
 
-- **Expedite** is for message with data type of equal to or less than 4 bytes. Only one requst
-  message is sent, and one ACK/NACK like message is returned. On a write, the last 4 bytes of
-  the request are the value being written. On a read, the last 4 bytes of the response are the
+- **Expedited** is for message with data type of equal to or less than 4-bytes. Only one request
+  message is sent, and one ACK/NACK like message is returned. On a write, the last 4-bytes of
+  the request are the value being written. On a read, the last 4-bytes of the response are the
   value (if no error).
-- **Sequence** is for message with data type of greater than 4 bytes. More than one requst message
+- **Segmented** is for message with data type of greater than 4-bytes. More than one request message
   is sent. On every request message, an response message is sent back. This is useful for larger
   data types like int64, uint64, float64, etc. Is consider the default SDO transaction type.
 - **Block** is for large block data (typically from a DOMAIN data type). Data is sent in block of
   127 message and then a CRC is applied to the block, if the block is valid the next block is sent.
-  For bulk data transfers, block type transfers are way more efficient than a Sequence type transfer;
+  For bulk data transfers, block type transfers are way more efficient than a Segmented type transfer;
   One ACK every 127 message vs on every message.
 
-Example expedite SDO download from node ``0x10`` from index ``0x1018`` subindex ``0x00``.
+Example expedited SDO download from node ``0x10`` from index ``0x1018`` subindex ``0x00``.
 
 .. code:: bash
 
@@ -200,7 +211,7 @@ Example expedite SDO download from node ``0x10`` from index ``0x1018`` subindex 
     vcan0  590   [8]  4F 18 10 00 04 00 00 00
 
 On OreSat, only the C3 will act as the SDO client and all other nodes are SDO servers.
-Expedite SDOs are used by the C3 to command and control all other nodes. Block SDOs are
+Expedited SDOs are used by the C3 to command and control all other nodes. Block SDOs are
 used for file transfers.
 
 PDO (Process Data Object)
@@ -212,7 +223,7 @@ if configured.
 There are two type of PDOs: TPDO (Transmit PDO) and RPDO (Recieve PDO).
 A node can produce data using TPDO and consume data using RPDO.
 
-All PDOs are 1 to 8 byte message of mapped data from/to the OD.
+All PDOs are 1 to 8-byte message of mapped data from/to the OD.
 
 Both RPDO and TPDO can be set up to be sent out every X SYNC message or on a
 timer.

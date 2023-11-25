@@ -19,18 +19,18 @@
         State University. See https://www.pdxaerospace.org/
 
     CFC
-        Cirrus Flux Camera. One of OreSat payloads and a Linux card.
+        Cirrus Flux Camera. The science payload for OreSat.
 
     SDR
-        Software Define Radio. Radio communications that are traditionally
+        Software-Defined Radio. Radio communications that are traditionally
         implemented in hardware are instead implemented in software.
 
     C3
         Command, communication, and control card. It is the flight computer for
-        OreSat. See https://github.com/oresat/oresat-c3
+        OreSat.
 
     CAN
-        Control Area Network. A message bus for embedded systems common is the
+        Control Area Network. A message bus for embedded systems common in the
         automotive industry.
 
     CANopen
@@ -53,7 +53,7 @@
         See https://www.uniclogs.org/
 
     HGS
-        Handheld Ground Station. Apart of the OreSat Live Mission.
+        Handheld Ground Station. Ground part of the OreSat Live system.
 
     EDL
         Engineering Data Link. The main communication data link between OreSat
@@ -72,8 +72,8 @@
         A develment enviroment for UniClOGS software connected to FlatSat.
 
     OreFlat
-        FlatSat and FlatClOGS together. A full hardware-in-loop satellite 
-        and ground station for integration and testing.
+        FlatSat and FlatClOGS together. A full HIL satellite and ground
+        station for integration and testing.
 
     Telecommand
         A command message sent to a satellite.
@@ -82,7 +82,7 @@
         Health and status information from a satellite.
 
     OTA
-        Over the Air. Is any type of wireless transmission.
+        Over the Air. Any type of wireless transmission.
 
     SDO
         Service Data Object. A sequence of CANopen messages for a node to
@@ -95,3 +95,15 @@
     EMCY
         Emergency. A broadcast CANopen message to mark an error on a node used
         for diagnostics.
+
+    OreSat Live
+        The outreach payload for OreSat that stream live video of earth to an HGS.
+
+    HIL
+        Hardware-in-the-loop. A test bench setup for testing and validating
+        software with the real hardware.
+
+    Octet
+        A unit of 8-bits. In communications, it is common to the unit octet, as
+        the unit byte has historically been platform-dependent, while an octet
+        has always been 8-bits.
