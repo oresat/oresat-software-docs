@@ -107,3 +107,20 @@
         A unit of 8-bits. In communications, it is common to the unit octet, as
         the unit byte has historically been platform-dependent, while an octet
         has always been 8-bits.
+
+    CCSDS
+        Consultative Committee for Space Data System. A committee of governmental
+        space-agencies to discuss and develop standards for space data and information
+        systems. See https://public.ccsds.org/default.aspx
+
+    USLP
+        Unified Space Data Link Protocol. A CCSDS communications protocol to be used
+        by space missions for space-to-ground or space-to-space communications links.
+
+    CFDP
+        CCSDS File Delivery Protocol. A CCSDS file transfer protocol to be used
+        by space missions.
+
+    XTCE
+        XML Telemetric and Command Exchange. An XML-based file for defining
+        a spacecraft's telemetry and telecommand data format.
