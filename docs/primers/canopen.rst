@@ -38,9 +38,8 @@ Variable
 - Has a default value (if not set it will be 0 or somthing simular for the data type).
 - Optional, callbacks can be setup by software on read and/or writes.
 
-.. note:: There are other standard CANopen data types, but they are omitted as
-   they are usused by OreSat.
-
+Data Types
+^^^^^^^^^^
 .. csv-table::
    :header: "Name", "C Data Type", "Description"
 
@@ -58,6 +57,9 @@ Variable
    "VISABLE_STRING", "char []", "An ASCII string"
    "OCTET_STRING", "uint8_t []", "An octet string"
    "DOMAN", "void \*", "A placeholder value that must be have callback function(s)"
+
+.. note:: There are other standard CANopen data types, but they are omitted as
+   they are usused by OreSat.
 
 Array
 *****
@@ -90,13 +92,14 @@ Indexes can be divide into 3 groups: Mandatory, Manufacture, and Optional.
 - Optional Objects (``0x1000`` to ``0x1FFF`` and ``0x6000`` to ``0x8000``) are
   objects added by user.
 
-On OreSat:
+.. note::
+   On OreSat:
 
-- Indexes ``0x1000`` to ``0x2FFF`` is reserved for CANopen standard objects
-- Indexes ``0x3000`` to ``0x3FFF`` is reserved for common OreSat objects between all cards
-- Indexes ``0x4000`` to ``0x4FFF`` is reserved for unique OreSat objects for a card
-- Indexes ``0x5000`` to ``0x5FFF`` is reserved for mapped RPDO objects
-- Indexes above ``0x6000`` are not used.
+   - Indexes ``0x1000`` to ``0x2FFF`` is reserved for CANopen standard objects
+   - Indexes ``0x3000`` to ``0x3FFF`` is reserved for common OreSat objects between all cards
+   - Indexes ``0x4000`` to ``0x4FFF`` is reserved for unique OreSat objects for a card
+   - Indexes ``0x5000`` to ``0x5FFF`` is reserved for mapped RPDO objects
+   - Indexes above ``0x6000`` are not used.
 
 Files
 -----
@@ -123,12 +126,13 @@ The main benefit of DCF is if there are multiple of the exact same device on
 the CAN bus, they all will have an unique DCF that was made from the same EDS 
 file. 
 
-For OreSat, EDS / DCF files are not used anymore. They were to hard to keep in sync,
-a one change to a card EDS could effect all other cards. Now A centralized database
-of OD definitions as YAML files can be found in the `oresat-configs`_ git repo. 
-Each YAML config acts like EDS, but as all configs are loaded in by script the 
-resulting data gets turned  into a DCF equivalent. Also, all YAML config file are
-much smaller and easier to quickly understand than an EDS/DCF file.
+.. note::
+   For OreSat, EDS / DCF files are not used anymore. They were to hard to keep in sync,
+   a one change to a card EDS could effect all other cards. Now a centralized database
+   of OD definitions as YAML files can be found in the `oresat-configs`_ git repo. 
+   Each YAML config acts like EDS, but as all configs are loaded in by script the 
+   resulting data gets turned  into a DCF equivalent. Also, all YAML config file are
+   much smaller and easier to quickly understand than an EDS/DCF file.
 
 Messages
 --------
@@ -167,8 +171,10 @@ Example heartbeat messages from node ``0x10``
     vcan0  710   [1]  05
     vcan0  710   [1]  05
 
-On OreSat, all nodes (including the C3) broadcast a heartbeat every second. The C3
-monitors all heartbeats.
+
+.. note::
+   On OreSat, all nodes (including the C3) broadcast a heartbeat every second. The C3
+   monitors all heartbeats.
 
 SDO (Service Data Object)
 *************************
@@ -210,9 +216,10 @@ Example expedited SDO download from node ``0x10`` from index ``0x1018`` subindex
     vcan0  610   [8]  40 18 10 00 00 00 00 00
     vcan0  590   [8]  4F 18 10 00 04 00 00 00
 
-On OreSat, only the C3 will act as the SDO client and all other nodes are SDO servers.
-Expedited SDOs are used by the C3 to command and control all other nodes. Block SDOs are
-used for file transfers.
+.. note::
+   On OreSat, only the C3 will act as the SDO client and all other nodes are SDO servers.
+   Expedited SDOs are used by the C3 to command and control all other nodes. Block SDOs are
+   used for file transfers.
 
 PDO (Process Data Object)
 *************************
@@ -245,8 +252,9 @@ Example TPDOs from node ``0x10``
     vcan0  190   [6]  2D 17 1B 00 00 00
     vcan0  290   [2]  00 00
 
-On OreSat, the C3 will consume all TPDOs, all other nodes will produce and/or
-consume TPDOs as needed. All beacon data will be sent the C3 via TPDOs.
+.. note::
+   On OreSat, the C3 will consume all TPDOs, all other nodes will produce and/or
+   consume TPDOs as needed. All beacon data will be sent the C3 via TPDOs.
 
 SYNC
 ****
@@ -261,7 +269,8 @@ Example SYNC message
   $ candump vcan0
     vcan0  080   [0]
 
-On OreSat, the C3 is the SYNC producer, all other nodes are consumers.
+.. note::
+   On OreSat, the C3 is the SYNC producer, all other nodes are consumers.
 
 EMCY (Emergency)
 ****************
@@ -284,7 +293,8 @@ Example EMCYs from node ``0x10``
     vcan0  090   [8]  00 01 01 01 02 03 04 05
     vcan0  090   [8]  00 22 05 12 34 56 78 90
 
-On OreSat, the C3 is the EMCY consumer, all nodes (including the C3) are EMCY producers. 
+.. note::
+   On OreSat, the C3 is the EMCY consumer, all nodes (including the C3) are EMCY producers. 
 
 Software Utilities
 ------------------
