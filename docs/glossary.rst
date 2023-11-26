@@ -89,11 +89,11 @@
         read or write a value to another node OD.
 
     PDO
-        Product Data Object. A broadcast type CANopen message for a
+        Process Data Object. A broadcast type CANopen message for a
         node that none, one, or many other nodes can consume.
 
     EMCY
-        Emergency. A broadcast CANopen message to mark an error on a node used
+        Emergency Object. A broadcast CANopen message to mark an error on a node used
         for diagnostics.
 
     OreSat Live
@@ -124,3 +124,21 @@
     XTCE
         XML Telemetric and Command Exchange. An XML-based file for defining
         a spacecraft's telemetry and telecommand data format.
+
+    ECSS
+        European Cooperation for Space Standardization. Collibration of the 
+        ESA (European Space Agency), the European space industries, and several space 
+        agencies, to develop and maintain space mission standards for European space
+        missions.
+
+    SCET
+        Spacecraft Elapsed Time.
+
+    TPDO
+        Transmit PDO
+    
+    RPDO
+        Recieve PDO
+
+    COB-ID
+        Communication Object Identifier. Used to identify a CANopen messages.

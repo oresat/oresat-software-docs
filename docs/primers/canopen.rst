@@ -19,21 +19,27 @@ A node is a CANopen device.
 
 All nodes will have an unique ``NODE-ID``, between ``0x01`` and ``0x7F``.
 
+.. note::
+   On OreSat, the C3 will always have the ``NODE-ID`` of ``0x01``.
+   All nodes other than the C3 have ``NODE-IDs`` are multiples of ``0x04``; 
+   e.g: ``0x04``, ``0x08``, ``0x12``, etc. See the notes in the PDO section
+   for the reasoning.
+
 OD (Object Dictionary)
 ----------------------
 
 The data structure that hold all data for CANopen node.
 
 Objects can have indexes and subindex.
-Valid indexes range from ``0x1000`` to ``0x8000`` and valid subindex range from
+Valid indexes range from ``0x1000`` to ``0x8000`` and valid subindexes range from
 ``0x00`` to ``0xFF``.
 
-Objects at an indexes can be Variables, Arrays, or Records.  
+Objects at an index can be Variables, Arrays, or Records.  
 
 Variable
 ********
 
-- Can be at a index or at a index and subindex.
+- Can be at a index or at a subindex of a Record/Array.
 - Has a access type of readonly, writeonly, readwrite, or constant.
 - Has a default value (if not set it will be 0 or somthing simular for the data type).
 - Optional, callbacks can be setup by software on read and/or writes.
@@ -56,7 +62,7 @@ Data Types
    "REAL64", "double", "64-bit (double-precision) floating point number"
    "VISABLE_STRING", "char []", "An ASCII string"
    "OCTET_STRING", "uint8_t []", "An octet string"
-   "DOMAN", "void \*", "A placeholder value that must be have callback function(s)"
+   "DOMAIN", "void \*", "A null value that must be have callback function(s)"
 
 .. note:: There are other standard CANopen data types, but they are omitted as
    they are usused by OreSat.
@@ -179,21 +185,20 @@ Example heartbeat messages from node ``0x10``
 SDO (Service Data Object)
 *************************
 
-SDO allows a node to upload or download an object value from or to another node's OD.
+SDOs allow a node to upload or download an object value from or to another node's OD.
 The initiating node acts as the client and the node it is communicating with acts as the
 server in `client-server model`_. A upload can also be thought of as a write; where 
 the client upload/writes a value to the server. A download can also be thought of as 
 a read; where the client download/reads a value from the server.
 
-SDO are the only messages that span over multiple CAN message, as the value 
+SDOs are the only messages that span over multiple CAN message, as the value 
 that is being read or written can be any length as defined by OD.
 
-SDO request messages use a ``COB-ID`` of ``0x580 + NODE-ID`` of the node the
-master node is reading from or writing to. SDO response messages use a 
-``COB-ID`` of ``0x600 + NODE-ID`` of the node the master node is reading from
-or writing to.
+A SDO client will use a ``COB-ID`` of ``0x580 + NODE-ID`` of the node that being is reading
+from or writing to (``NODE-ID`` is the id of SDO server). A SDO server will responsed using
+a ``COB-ID`` of ``0x600 + NODE-ID`` (its own ``NODE-ID``).
 
-There are 3 types of SDO; expedited, segmented, and block. CANopen libraries can determine the best
+There are 3 types of SDOs; expedited, segmented, and block. CANopen libraries can determine the best
 SDO type based off of the value's data type.
 
 - **Expedited** is for message with data type of equal to or less than 4-bytes. Only one request
@@ -240,7 +245,7 @@ All nodes get 4 TPDOs and RPDOs by default, TPDO ``COB-ID`` are
 ``0x480 + NODE-ID``. RPDO ``COB-ID`` are ``0x200 + NODE-ID``, 
 ``0x300 + NODE-ID``, ``0x400 + NODE-ID``, ``0x500 + NODE-ID``.
 
-So a board with NODE-ID 0x4 can use the following 4 ``COB-ID`` for it's TPDOs:
+So a board with ``NODE-ID`` ``0x04`` can use the following 4 ``COB-ID`` for it's TPDOs:
 ``0x184``, ``0x284``, ``0x384``, ``0x484`` and 4 ``COB-ID`` for it's RPDOs:
 ``0x204``, ``0x304``, ``0x404``, ``0x504``.
 
@@ -254,7 +259,29 @@ Example TPDOs from node ``0x10``
 
 .. note::
    On OreSat, the C3 will consume all TPDOs, all other nodes will produce and/or
-   consume TPDOs as needed. All beacon data will be sent the C3 via TPDOs.
+   consume TPDOs as needed. All beacon data will be sent to the C3 via TPDOs.
+
+.. note::
+   As mention in the Node section above. All nodes on OreSat use a ``NODE-ID`` with a
+   multple of ``0x04``. 
+
+   This is done as 4 TPDOs (a total of 64 bytes of data) is not enough for OreSat
+   Nodes. So PSAS decided to give all nodes 4 times the normal PDOs. So a OreSat
+   CANopen node now has 256 bytes for telemetry.
+
+   All nodes they use the PDOs of +1, +2, +3 to their ``NODE-IDs`` with a exception
+   of the C3, which only has PDOs of +1, +2 of it's ``NODE-ID``.
+
+   An example of board with ``NODE-ID`` of ``0x04``:
+
+   - No nodes with ``NODE-ID`` of ``0x05``, ``0x06``, ``0x07`` will exist on
+     OreSat.
+   - Can use the following 16 TPDOs: ``0x184``, ``0x284``, ``0x384``, ``0x484``, 
+     ``0x185``, ``0x285``, ``0x385``, ``0x485``, ``0x186``, ``0x286``, ``0x386``,
+     ``0x486``, ``0x187``, ``0x287``, ``0x387``, and ``0x487``.
+   - Can use the following 16 RPDOs: ``0x204``, ``0x304``, ``0x404``, ``0x504``, 
+     ``0x205``, ``0x305``, ``0x405``, ``0x505``, ``0x206``, ``0x306``, ``0x406``, 
+     ``0x506``, ``0x207``, ``0x307``, ``0x407``, and ``0x507``.
 
 SYNC
 ****
@@ -295,6 +322,46 @@ Example EMCYs from node ``0x10``
 
 .. note::
    On OreSat, the C3 is the EMCY consumer, all nodes (including the C3) are EMCY producers. 
+
+Time Sync
+---------
+
+.. warning:: This is not CANopen standard, but is used on OreSat.
+
+The time sync message on OreSat uses the CET format with the Unix
+timestamp as the epoch. SCET is from the ECCS CANbus extension
+protocol standard.
+
+ECSS SCET Definition
+********************
+
+.. code-block::
+
+    struct {
+        unsigned 32 Coarse Time
+        unsigned 24 Fine Time (sub seconds)
+    } scet
+
+On OreSat the SCET value is a uint64 with Coarse Time first 4 bytes,
+followed by the Fine Time 3 bytes, and the final byte is padding.
+
+Time Syncing
+************
+
+Time syncing is handle by the C3 and the GPS board. The TPDO with ``COB-ID`` of
+``0x181`` is reserved to be the Time Sync TPDO. Both the C3 and GPS board can 
+sent it. All nodes that care about time, except the node that sent the Time 
+Sync TPDO, will sync their clocks to the time in the Time Sync TPDO when it is
+recieved. 
+
+The C3 has an RTC (Real Time Clock) and the GPS board has a GPS reciever and 
+will set it's system time to the GPS time in GPS messages.
+
+The GPS board will only send the Time Sync TPDO, if has sync it's system time
+to GPS time and it recieves a SYNC message from the C3. So, either way the C3
+has full control when all clocks are sync'd. The C3 can just send out the Time
+Sync TPDO (it will use the time from it's RTC) or request it from the GPS
+board, if the GPS board is on.
 
 Software Utilities
 ------------------
