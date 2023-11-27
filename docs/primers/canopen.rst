@@ -65,7 +65,7 @@ Data Types
    "DOMAIN", "void \*", "A null value that must be have callback function(s)"
 
 .. note:: There are other standard CANopen data types, but they are omitted as
-   they are usused by OreSat.
+   they are unused by OreSat.
 
 Array
 *****
@@ -101,10 +101,10 @@ Indexes can be divide into 3 groups: Mandatory, Manufacture, and Optional.
 .. note::
    On OreSat:
 
-   - Indexes ``0x1000`` to ``0x2FFF`` is reserved for CANopen standard objects
-   - Indexes ``0x3000`` to ``0x3FFF`` is reserved for common OreSat objects between all cards
-   - Indexes ``0x4000`` to ``0x4FFF`` is reserved for unique OreSat objects for a card
-   - Indexes ``0x5000`` to ``0x5FFF`` is reserved for mapped RPDO objects
+   - Indexes ``0x1000`` to ``0x2FFF`` are reserved for CANopen standard objects
+   - Indexes ``0x3000`` to ``0x3FFF`` are reserved for common OreSat objects between all cards
+   - Indexes ``0x4000`` to ``0x4FFF`` arereserved for unique OreSat objects for a card
+   - Indexes ``0x5000`` to ``0x5FFF`` are reserved for mapped RPDO objects
    - Indexes above ``0x6000`` are not used.
 
 Files
@@ -128,7 +128,7 @@ like ``NODE-ID``, node name, and other node unique things.
 A EDS is general file for a device and is used to generate the DCF. The DCF is
 used when the device is on an actual production CAN bus. 
 
-The main benefit of DCF is if there are multiple of the exact same device on 
+The main benefit of a DCF is if there are multiple of the exact same device on
 the CAN bus, they all will have an unique DCF that was made from the same EDS 
 file. 
 
@@ -157,7 +157,7 @@ Heartbeat
 All node send out a 1-byte heartbeat message with a ``COB-ID`` of
 ``0x700 + NODE-ID``.
 
-The master node can use the heartbeat message to confirm what boards are
+Heartbeat consumer node(s) can use the heartbeat message to confirm what boards are
 on and in a good state.
 
 .. csv-table::
@@ -185,13 +185,13 @@ Example heartbeat messages from node ``0x10``
 SDO (Service Data Object)
 *************************
 
-SDOs allow a node to upload or download an object value from or to another node's OD.
+SDOs allow a node to upload or download an object value to or from another node's OD.
 The initiating node acts as the client and the node it is communicating with acts as the
 server in `client-server model`_. A upload can also be thought of as a write; where 
 the client upload/writes a value to the server. A download can also be thought of as 
 a read; where the client download/reads a value from the server.
 
-SDOs are the only messages that span over multiple CAN message, as the value 
+SDOs are the only messages that span over multiple CAN message, as the value
 that is being read or written can be any length as defined by OD.
 
 A SDO client will use a ``COB-ID`` of ``0x580 + NODE-ID`` of the node that being is reading
@@ -208,7 +208,7 @@ SDO type based off of the value's data type.
 - **Segmented** is for message with data type of greater than 4-bytes. More than one request message
   is sent. On every request message, an response message is sent back. This is useful for larger
   data types like int64, uint64, float64, etc. Is consider the default SDO transaction type.
-- **Block** is for large block data (typically from a DOMAIN data type). Data is sent in block of
+- **Block** is for large block data (typically for a DOMAIN data type). Data is sent in block of
   127 message and then a CRC is applied to the block, if the block is valid the next block is sent.
   For bulk data transfers, block type transfers are way more efficient than a Segmented type transfer;
   One ACK every 127 message vs on every message.
@@ -263,7 +263,7 @@ Example TPDOs from node ``0x10``
 
 .. note::
    As mention in the Node section above. All nodes on OreSat use a ``NODE-ID`` with a
-   multple of ``0x04``. 
+   multiple of ``0x04``.
 
    This is done as 4 TPDOs (a total of 64 bytes of data) is not enough for OreSat
    Nodes. So PSAS decided to give all nodes 4 times the normal PDOs. So a OreSat
@@ -328,7 +328,7 @@ Time Sync
 
 .. warning:: This is not CANopen standard, but is used on OreSat.
 
-The time sync message on OreSat uses the CET format with the Unix
+The time sync message on OreSat uses the SCET format with the Unix
 timestamp as the epoch. SCET is from the ECCS CANbus extension
 protocol standard.
 
@@ -349,12 +349,12 @@ Time Syncing
 ************
 
 Time syncing is handle by the C3 and the GPS board. The TPDO with ``COB-ID`` of
-``0x181`` is reserved to be the Time Sync TPDO. Both the C3 and GPS board can 
-sent it. All nodes that care about time, except the node that sent the Time 
+``0x181`` is reserved to be the Time Sync TPDO. Both the C3 and GPS board can
+send it. All nodes that care about time, except the node that sent the Time
 Sync TPDO, will sync their clocks to the time in the Time Sync TPDO when it is
 recieved. 
 
-The C3 has an RTC (Real Time Clock) and the GPS board has a GPS reciever and 
+The C3 has an RTC (Real Time Clock) and the GPS board has a GPS reciever and
 will set it's system time to the GPS time in GPS messages.
 
 The GPS board will only send the Time Sync TPDO, if has sync it's system time
