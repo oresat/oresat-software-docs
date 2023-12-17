@@ -72,7 +72,14 @@ Bash command to connect to a `CANable`_ using the slcand firmware.
 
   $ slcand -o -c -s8 /dev/ttyACM1 can0
 
-The systemd-networkd config file to use a `CANable`_ using the candlelight firmware.
+Bash command to connect to a `CANable`_ using the candlelight firmware with a bitrate of 1Mbps.
+
+.. code:: bash
+
+  $ sudo ip link set can0 type can bitrate 1000000
+  $ sudo ip link set can0 up
+
+Example systemd-networkd config file to autoconnect to a `CANable`_ using the candlelight firmware.
 
 .. code::
 
