@@ -7,7 +7,7 @@ CANopen Primer
   OreSat device. For the full standards, see the `CAN in Automation (CiA)`_
   website.
 
-`CANopen`_ is a message protocal for `CAN`_ messages on a `CAN`_ bus by 
+`CANopen`_ is a message protocol for `CAN`_ messages on a `CAN`_ bus by 
 `CAN in Automation (CiA)`_.
 
 CANopen only uses little endian in its messages.
@@ -41,7 +41,7 @@ Variable
 
 - Can be at a index or at a subindex of a Record/Array.
 - Has a access type of readonly, writeonly, readwrite, or constant.
-- Has a default value (if not set it will be 0 or somthing simular for the data type).
+- Has a default value (if not set it will be 0 or something similar for the data type).
 - Optional, callbacks can be setup by software on read and/or writes.
 
 Data Types
@@ -93,7 +93,7 @@ Indexes can be divide into 3 groups: Mandatory, Manufacture, and Optional.
 
 - Mandatory Objects (``0x1000``, ``0x1001``, ``0x1018``) are required indexes
   for all nodes.
-- Manufacture Objects (``0x2000`` to ``0x5FFF``) are objects addded by
+- Manufacture Objects (``0x2000`` to ``0x5FFF``) are objects added by
   manufacturer.
 - Optional Objects (``0x1000`` to ``0x1FFF`` and ``0x6000`` to ``0x8000``) are
   objects added by user.
@@ -103,7 +103,7 @@ Indexes can be divide into 3 groups: Mandatory, Manufacture, and Optional.
 
    - Indexes ``0x1000`` to ``0x2FFF`` are reserved for CANopen standard objects
    - Indexes ``0x3000`` to ``0x3FFF`` are reserved for common OreSat objects between all cards
-   - Indexes ``0x4000`` to ``0x4FFF`` arereserved for unique OreSat objects for a card
+   - Indexes ``0x4000`` to ``0x4FFF`` are reserved for unique OreSat objects for a card
    - Indexes ``0x5000`` to ``0x5FFF`` are reserved for mapped RPDO objects
    - Indexes above ``0x6000`` are not used.
 
@@ -195,7 +195,7 @@ SDOs are the only messages that span over multiple CAN message, as the value
 that is being read or written can be any length as defined by OD.
 
 A SDO client will use a ``COB-ID`` of ``0x580 + NODE-ID`` of the node that being is reading
-from or writing to (``NODE-ID`` is the id of SDO server). A SDO server will responsed using
+from or writing to (``NODE-ID`` is the id of SDO server). A SDO server will respond using
 a ``COB-ID`` of ``0x600 + NODE-ID`` (its own ``NODE-ID``).
 
 There are 3 types of SDOs; expedited, segmented, and block. CANopen libraries can determine the best
@@ -232,7 +232,7 @@ PDO (Process Data Object)
 PDOs are producer / consumer type message. Any node can produce or consume PDO,
 if configured.
 
-There are two type of PDOs: TPDO (Transmit PDO) and RPDO (Recieve PDO).
+There are two type of PDOs: TPDO (Transmit PDO) and RPDO (Receive PDO).
 A node can produce data using TPDO and consume data using RPDO.
 
 All PDOs are 1 to 8-byte message of mapped data from/to the OD.
@@ -286,7 +286,7 @@ Example TPDOs from node ``0x10``
 SYNC
 ****
 
-A message that TPDO can be configure to response to after every X occuraces.
+A message that TPDO can be configure to response to after every X occurrences.
 A SYNC message always has ``COB-ID`` of ``0x80`` with no payload.
 
 Example SYNC message
@@ -309,7 +309,7 @@ A EMCY message has a ``COB-ID`` of ``0x80 + NODE-ID``.
    :header: "Name", "Bytes", "Description"
 
    "EEC", "2", "Emergency error code, a classification of the error"
-   "ER", "1", "Error register, value from index ``0x1001``; a ongoing bitfield of the active errors"
+   "ER", "1", "Error register, value from index ``0x1001``; a ongoing bit field of the active errors"
    "MSEF", "5", "Manufacturer-specific error code, defined by PSAS"
 
 Example EMCYs from node ``0x10``
@@ -329,7 +329,7 @@ Time Sync
 .. warning:: This is not CANopen standard, but is used on OreSat.
 
 The time sync message on OreSat uses the SCET format with the Unix
-timestamp as the epoch. SCET is from the ECCS CANbus extension
+time stamp as the epoch. SCET is from the ECSS CAN bus extension
 protocol standard.
 
 ECSS SCET Definition
@@ -352,14 +352,14 @@ Time syncing is handle by the C3 and the GPS board. The TPDO with ``COB-ID`` of
 ``0x181`` is reserved to be the Time Sync TPDO. Both the C3 and GPS board can
 send it. All nodes that care about time, except the node that sent the Time
 Sync TPDO, will sync their clocks to the time in the Time Sync TPDO when it is
-recieved. 
+received. 
 
-The C3 has an RTC (Real Time Clock) and the GPS board has a GPS reciever and
+The C3 has an RTC (Real Time Clock) and the GPS board has a GPS receiver and
 will set it's system time to the GPS time in GPS messages.
 
 The GPS board will only send the Time Sync TPDO, if has sync it's system time
-to GPS time and it recieves a SYNC message from the C3. So, either way the C3
-has full control when all clocks are sync'd. The C3 can just send out the Time
+to GPS time and it receives a SYNC message from the C3. So, either way the C3
+has full control when all clocks are synchronized. The C3 can just send out the Time
 Sync TPDO (it will use the time from it's RTC) or request it from the GPS
 board, if the GPS board is on.
 
@@ -372,7 +372,7 @@ not have to convert the raw hex values from ``candump`` to their "real" values.
 Also, ``candump`` is great at quickly testing a node or two, but can easily
 become impossible to read once several node start sending data across the CAN
 bus or when a large block data transfer is in progress, so `CANopen Monitor`_
-becomes more resonable for viewing CANopen messages on the CAN bus.
+becomes more reasonable for viewing CANopen messages on the CAN bus.
 
 .. _CANopen: https://en.wikipedia.org/wiki/CANopen
 .. _CAN: https://en.wikipedia.org/wiki/CAN

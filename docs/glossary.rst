@@ -15,7 +15,7 @@
         PSAS's open source CubeSat. See https://www.oresat.org/
 
     PSAS
-        Portland State Aerosapce Society. A student aerospace group at Portland
+        Portland State Aerospace Society. A student aerospace group at Portland
         State University. See https://www.pdxaerospace.org/
 
     CFC
@@ -65,11 +65,11 @@
         https://satnogs.org/
 
     FlatSat
-        The develment enviroment for OreSat. The dev OreSat is layout flat on
+        The development environment for OreSat. The dev OreSat is layout flat on
         a table, hence the name FlatSat.
 
     FlatClOGS
-        A develment enviroment for UniClOGS software connected to FlatSat.
+        A development environment for UniClOGS software connected to FlatSat.
 
     OreFlat
         FlatSat and FlatClOGS together. A full HIL satellite and ground
@@ -126,7 +126,7 @@
         a spacecraft's telemetry and telecommand data format.
 
     ECSS
-        European Cooperation for Space Standardization. Collibration of the 
+        European Cooperation for Space Standardization. Calibration of the
         ESA (European Space Agency), the European space industries, and several space 
         agencies, to develop and maintain space mission standards for European space
         missions.
@@ -138,7 +138,7 @@
         Transmit PDO
     
     RPDO
-        Recieve PDO
+        Receive PDO
 
     COB-ID
         Communication Object Identifier. Used to identify a CANopen messages.
