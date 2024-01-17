@@ -143,7 +143,7 @@ Use ``git add`` to stage files
 
 .. code:: bash
 
-   git push 
+   git push
 
 Common Commands
 ---------------

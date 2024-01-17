@@ -1,7 +1,7 @@
-Github Actions
-==============
+GitHub Actions Primer
+=====================
 
-What is Github Actions?
+What is GitHub Actions?
 -----------------------
 GitHub Actions is a tool provided by GitHub, the platform where you store and manage your code.
 This tool helps you automate tasks related to your code, such as automatically testing it,

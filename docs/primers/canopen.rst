@@ -1,13 +1,13 @@
 CANopen Primer
 ==============
 
-.. note:: 
+.. note::
 
   This only goes over the basics of CANopen for what is need to work on a
   OreSat device. For the full standards, see the `CAN in Automation (CiA)`_
   website.
 
-`CANopen`_ is a message protocol for `CAN`_ messages on a `CAN`_ bus by 
+`CANopen`_ is a message protocol for `CAN`_ messages on a `CAN`_ bus by
 `CAN in Automation (CiA)`_.
 
 CANopen only uses little endian in its messages.
@@ -21,7 +21,7 @@ All nodes will have an unique ``NODE-ID``, between ``0x01`` and ``0x7F``.
 
 .. note::
    On OreSat, the C3 will always have the ``NODE-ID`` of ``0x01``.
-   All nodes other than the C3 have ``NODE-IDs`` are multiples of ``0x04``; 
+   All nodes other than the C3 have ``NODE-IDs`` are multiples of ``0x04``;
    e.g: ``0x04``, ``0x08``, ``0x12``, etc. See the notes in the PDO section
    for the reasoning.
 
@@ -34,7 +34,7 @@ Objects can have indexes and subindex.
 Valid indexes range from ``0x1000`` to ``0x8000`` and valid subindexes range from
 ``0x00`` to ``0xFF``.
 
-Objects at an index can be Variables, Arrays, or Records.  
+Objects at an index can be Variables, Arrays, or Records.
 
 Variable
 ********
@@ -73,8 +73,8 @@ Array
 - Can only be at an index.
 - All subindexes other than subindex ``0x00``, must be the same data type.
 - Subindex ``0x00`` is a Variable with value of the highest subindex.
-- Variables in a Array do not have have sequential subindex; e.g.: a 
-  Array can have object at subindexes ``0x00``, ``0x01``, ``0x04`` (no objects 
+- Variables in a Array do not have have sequential subindex; e.g.: a
+  Array can have object at subindexes ``0x00``, ``0x01``, ``0x04`` (no objects
   at ``0x02`` or ``0x03`` in this example).
 
 Record
@@ -82,8 +82,8 @@ Record
 
 - Can only be at an index.
 - Subindex ``0x00`` is a Variable with value of the highest subindex.
-- Variables in a Record do not have have sequential subindex; e.g.: a 
-  Record can have object at subindexes ``0x00``, ``0x01``, ``0x04`` (no objects 
+- Variables in a Record do not have have sequential subindex; e.g.: a
+  Record can have object at subindexes ``0x00``, ``0x01``, ``0x04`` (no objects
   at ``0x02`` or ``0x03`` in this example).
 
 Object Groups
@@ -126,19 +126,19 @@ A DCF file is mostly a EDS file with a extra section for device configuration
 like ``NODE-ID``, node name, and other node unique things.
 
 A EDS is general file for a device and is used to generate the DCF. The DCF is
-used when the device is on an actual production CAN bus. 
+used when the device is on an actual production CAN bus.
 
 The main benefit of a DCF is if there are multiple of the exact same device on
-the CAN bus, they all will have an unique DCF that was made from the same EDS 
-file. 
+the CAN bus, they all will have an unique DCF that was made from the same EDS
+file.
 
 .. note::
    For OreSat, EDS / DCF files are not used anymore. They were to hard to keep in sync,
    a one change to a card EDS could effect all other cards. Now a centralized database
-   of OD definitions as YAML files can be found in the `oresat-configs`_ git repo. 
-   Each YAML config acts like EDS, but as all configs are loaded in by script the 
+   of OD definitions as YAML files can be found in the `oresat-configs`_ git repo.
+   Each YAML config acts like EDS, but as all configs are loaded in by script the
    resulting data gets turned  into a DCF equivalent. Also, all YAML config file are
-   much smaller and easier to quickly understand than an EDS/DCF file.
+   much smaller and easier to quickly understand than an EDS / DCF file.
 
 Messages
 --------
@@ -187,8 +187,8 @@ SDO (Service Data Object)
 
 SDOs allow a node to upload or download an object value to or from another node's OD.
 The initiating node acts as the client and the node it is communicating with acts as the
-server in `client-server model`_. A upload can also be thought of as a write; where 
-the client upload/writes a value to the server. A download can also be thought of as 
+server in `client-server model`_. A upload can also be thought of as a write; where
+the client upload/writes a value to the server. A download can also be thought of as
 a read; where the client download/reads a value from the server.
 
 SDOs are the only messages that span over multiple CAN message, as the value
@@ -240,9 +240,9 @@ All PDOs are 1 to 8-byte message of mapped data from/to the OD.
 Both RPDO and TPDO can be set up to be sent out every X SYNC message or on a
 timer.
 
-All nodes get 4 TPDOs and RPDOs by default, TPDO ``COB-ID`` are 
-``0x180 + NODE-ID``, ``0x280 + NODE-ID``, ``0x380 + NODE-ID``, 
-``0x480 + NODE-ID``. RPDO ``COB-ID`` are ``0x200 + NODE-ID``, 
+All nodes get 4 TPDOs and RPDOs by default, TPDO ``COB-ID`` are
+``0x180 + NODE-ID``, ``0x280 + NODE-ID``, ``0x380 + NODE-ID``,
+``0x480 + NODE-ID``. RPDO ``COB-ID`` are ``0x200 + NODE-ID``,
 ``0x300 + NODE-ID``, ``0x400 + NODE-ID``, ``0x500 + NODE-ID``.
 
 So a board with ``NODE-ID`` ``0x04`` can use the following 4 ``COB-ID`` for it's TPDOs:
@@ -276,11 +276,11 @@ Example TPDOs from node ``0x10``
 
    - No nodes with ``NODE-ID`` of ``0x05``, ``0x06``, ``0x07`` will exist on
      OreSat.
-   - Can use the following 16 TPDOs: ``0x184``, ``0x284``, ``0x384``, ``0x484``, 
+   - Can use the following 16 TPDOs: ``0x184``, ``0x284``, ``0x384``, ``0x484``,
      ``0x185``, ``0x285``, ``0x385``, ``0x485``, ``0x186``, ``0x286``, ``0x386``,
      ``0x486``, ``0x187``, ``0x287``, ``0x387``, and ``0x487``.
-   - Can use the following 16 RPDOs: ``0x204``, ``0x304``, ``0x404``, ``0x504``, 
-     ``0x205``, ``0x305``, ``0x405``, ``0x505``, ``0x206``, ``0x306``, ``0x406``, 
+   - Can use the following 16 RPDOs: ``0x204``, ``0x304``, ``0x404``, ``0x504``,
+     ``0x205``, ``0x305``, ``0x405``, ``0x505``, ``0x206``, ``0x306``, ``0x406``,
      ``0x506``, ``0x207``, ``0x307``, ``0x407``, and ``0x507``.
 
 SYNC
@@ -321,7 +321,7 @@ Example EMCYs from node ``0x10``
     vcan0  090   [8]  00 22 05 12 34 56 78 90
 
 .. note::
-   On OreSat, the C3 is the EMCY consumer, all nodes (including the C3) are EMCY producers. 
+   On OreSat, the C3 is the EMCY consumer, all nodes (including the C3) are EMCY producers.
 
 Time Sync
 ---------
@@ -329,7 +329,7 @@ Time Sync
 .. warning:: This is not CANopen standard, but is used on OreSat.
 
 The time sync message on OreSat uses the SCET format with the Unix
-time stamp as the epoch. SCET is from the ECSS CAN bus extension
+timestamp as the epoch. SCET is from the ECSS CANbus extension
 protocol standard.
 
 ECSS SCET Definition
@@ -352,7 +352,7 @@ Time syncing is handle by the C3 and the GPS board. The TPDO with ``COB-ID`` of
 ``0x181`` is reserved to be the Time Sync TPDO. Both the C3 and GPS board can
 send it. All nodes that care about time, except the node that sent the Time
 Sync TPDO, will sync their clocks to the time in the Time Sync TPDO when it is
-received. 
+received.
 
 The C3 has an RTC (Real Time Clock) and the GPS board has a GPS receiver and
 will set it's system time to the GPS time in GPS messages.

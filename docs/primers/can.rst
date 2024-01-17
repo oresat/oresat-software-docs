@@ -10,13 +10,12 @@ the basics, it is fairly complete. No reason to repeat it here.
 Virtual CAN Bus
 ---------------
 
-Linux support make a vcan (Virtual CAN) bus. A vcan bus can be super useful
-for development.
+Linux natively supports vcan (Virtual CAN) bus. A vcan bus can be super useful for development.
 
 To make a vcan bus on Linux:
 
 .. code:: bash
-  
+
    $ sudo ip link add dev vcan0 type vcan
    $ sudo ip link set vcan0 up
 
@@ -59,6 +58,15 @@ message over the CAN bus.
     vcan0  190   [2]  05 10
 
 For more info, see https://manpages.debian.org/testing/can-utils/cansend.1.en.html
+
+SavvyCAN
+********
+
+An open-source and cross platform GUI that can display CAN traffic, as well as, record and view
+CAN traces. It can also use a ``.dbc`` file to parse the CAN messages. Incredibly usefully to
+monitor and debug CAN traffic.
+
+See https://github.com/collin80/SavvyCAN
 
 Hardware
 --------
