@@ -15,6 +15,7 @@ Read through the below documents:
    glossary
    primers/index
    images/index
+   sw-stack
 
 Setting up your environment
 ===========================

@@ -1,0 +1,115 @@
+<mxfile host="Electron" modified="2023-12-06T02:40:25.092Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.2 Chrome/114.0.5735.289 Electron/25.9.4 Safari/537.36" etag="-hLMHL0Tic79qFB95umF" version="22.1.2" type="device">
+  <diagram name="Page-1" id="Bg4YxcNiWTvF_vsRtUFq">
+    <mxGraphModel dx="1416" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="scJn_Icfmt93G2V1GaAR-18" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="240" y="90" width="470" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-52" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="250" y="300" width="450" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-33" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="240" y="390" width="470" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-29" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="240" y="440" width="470" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-21" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="240" y="490" width="840" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-17" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="250" y="120" width="450" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-1" value="Device Tree" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="350" y="450" width="350" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-3" value="Linux Kernel" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="350" y="340" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-4" value="U-Boot" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="350" y="400" width="350" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-5" value="ARM Cortex M3" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="720" y="500" width="110" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-6" value="PRU0" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="840" y="500" width="110" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-7" value="M3 Firmware" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="720" y="90" width="110" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-8" value="PRU0 Firmware" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="840" y="90" width="110" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-9" value="ARM Cortex A8" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="350" y="500" width="360" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-10" value="OreSat Linux Kernel Module(s)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="350" y="310" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-14" value="Other OreSat Daemon(s)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="530" y="130" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-19" value="User Space" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="255" y="190" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-20" value="Debian Linux" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="430" y="90" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-22" value="Octavo A8" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=#ffe6cc;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="250" y="495" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-23" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="240" y="540" width="840" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-25" value="SD Card" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="470" y="550" width="110" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-26" value="OreSat Card Specific Hardware" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="590" y="550" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-27" value="Other Hardware" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=#ffe6cc;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="250" y="545" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-30" value="HAL" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="250" y="445" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-34" value="Bootloader" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="250" y="395" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-39" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="350" y="130" width="170" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-40" value="OLAF" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="357.5" y="190" width="152.5" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-41" value="OreSat Configs" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="357.5" y="220" width="152.5" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-42" value="OLAF App" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="405" y="130" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-43" value="Card Software" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="357.5" y="160" width="152.5" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-45" value="Systemd" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="350" y="260" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-53" value="Kernel Space" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="260" y="320" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="scJn_Icfmt93G2V1GaAR-24" value="eMMC" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="350" y="550" width="110" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="Py97awr7R_dun50P3c0h-1" value="PRU1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="960" y="500" width="110" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="Py97awr7R_dun50P3c0h-2" value="PRU1 Firmware" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="960" y="90" width="110" height="390" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
