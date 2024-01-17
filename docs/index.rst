@@ -14,7 +14,7 @@ Read through the below documents:
 
    glossary
    primers/index
-   hdl
+   images/index
 
 Setting up your environment
 ===========================
