@@ -16,6 +16,7 @@ Read through the below documents:
    primers/index
    images/index
    sw-stack
+   repos
 
 Setting up your environment
 ===========================
